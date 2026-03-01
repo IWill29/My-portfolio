@@ -9,7 +9,6 @@ This is my personal portfolio website, built with modern web technologies to cre
 The project leverages the latest frontend tools and libraries:
 
 - **Framework:** [Next.js](https://nextjs.org/) (React 19)
-- **3D Graphics:** [Three.js](https://threejs.org/) with [@react-three/fiber](https://github.com/pmndrs/react-three-fiber) and [@react-three/drei](https://github.com/pmndrs/drei)
 - **Styling:** [Tailwind CSS](https://tailwindcss.com/)
 - **Animations:** [Framer Motion](https://www.framer.com/motion/) and [Lottie React](https://github.com/gamier/lottie-react)
 - **Icons:** [React Icons](https://react-icons.github.io/react-icons/)
