@@ -16,7 +16,6 @@ The project leverages the latest frontend tools and libraries:
 
 ## ✨ Features
 
-- **Interactive 3D Elements:** Powered by Three.js and Three-Globe to provide depth and a modern aesthetic.
 - **Fluid Animations:** Smooth transitions and entry effects using Framer Motion.
 - **Fully Responsive:** Optimized for all screen sizes, from mobile devices to large desktop monitors.
 - **Dark/Light Mode:** Seamless theme switching to match user preference.
