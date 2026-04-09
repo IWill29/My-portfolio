@@ -12,7 +12,7 @@ The project leverages the latest frontend tools and libraries:
 - **Styling:** [Tailwind CSS](https://tailwindcss.com/)
 - **Animations:** [Framer Motion](https://www.framer.com/motion/) and [Lottie React](https://github.com/gamier/lottie-react)
 - **Icons:** [React Icons](https://react-icons.github.io/react-icons/)
-- **Theming:** [Next Themes](https://github.com/pacocoursey/next-themes) (Light/Dark mode support)
+
 
 ## ✨ Features
 
