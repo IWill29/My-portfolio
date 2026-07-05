@@ -28,7 +28,7 @@ export const gridItems = [
   {
     id: 3,
     title: "My tech stack",
-    description: "Next.js is my main weapon.",
+    description: "Next.js and Laravel are my main weapons.",
     className: "lg:col-span-2 md:col-span-3 md:row-span-2",
     imgClassName: "",
     titleClassName: "justify-center",
@@ -42,12 +42,12 @@ export const gridItems = [
     className: "lg:col-span-2 md:col-span-3 md:row-span-1",
     imgClassName: "",
     titleClassName: "justify-start",
-    img: "programing-2.avif",
+    img: "/programing-2.avif",
   },
 
   {
     id: 5,
-    title: "Currently building a Ai components generator SaaS application.",
+    title: "Currently seeking clients for e-commerce projects and developing automated AI agents.",
     className: "md:col-span-3 md:row-span-2",
     imgClassName: "absolute right-0 bottom-0 md:w-96 w-60",
     titleClassName: "justify-center md:justify-start lg:justify-center",
@@ -84,33 +84,37 @@ export const projects = [
   },
   {
     id: 3,
-    title: "Coming Soon: Web app components generator with AI",
-    des: "Coming Soon: A web app components generator with AI, designed to streamline development and enhance creativity in building user interfaces.",
-    img: "/coming.webp",
-    iconLists: ["/next.svg", "/ts.svg", "/react.svg", "/tail.svg",],
-    link: "Coming Soon",
+    title: "DriveEast.lv — Magebit Bootcamp Project",
+    des: "Full-stack car marketplace built during Magebit IT Bootcamp 2026 — used cars, leasing, buyback, multilingual catalog, and an AI assistant for vehicle inquiries.",
+    img: "/project-3.png",
+    iconLists: ["/php.svg", "/laravel.svg", "/filament.svg", "/mariadb.svg", "/tail.svg", "/blade.svg"],
+    link: "https://east-squad.magebit.dev/en",
   },
+];
+
+export const techStackIcons = [
+  ...new Set(projects.flatMap((project) => project.iconLists)),
 ];
 
 export const workExperience = [
   {
     id: 1,
-    title: "Soldier in CBRN unit - Latvian Army",
-    desc: "My military service in the Latvian Army's CBRN unit provided me with discipline, teamwork, and problem-solving skills that I now apply to my work as a developer.",
+    title: "IBM Full Stack Software Developer Certificate",
+    desc: "Completed the IBM Full Stack Software Developer Professional Certificate, covering frontend, backend, cloud, and DevOps fundamentals.",
     className: "md:col-span-2",
-    thumbnail: "/army.png",
+    thumbnail: "/ibm.svg",
   },
   {
     id: 2,
-    title: "Student at EKA University",
-    desc: "Studying Computer Science at EKA University, where I gained a basic knowledge of programming concepts.",
+    title: "Magebit IT Bootcamp 2026",
+    desc: "Graduated from Magebit IT Bootcamp 2026 in Riga — an intensive program focused on real-world full-stack development skills.",
     className: "md:col-span-2",
-    thumbnail: "/university.svg",
+    thumbnail: "/magebit.svg",
   },
   {
     id: 3,
-    title: "Freelance Dev - Self-employed",
-    desc: "Have experience as freelance developer creating websites and web applications for clients.",
+    title: "Freelance dev",
+    desc: "I help clients build complete e-commerce solutions — from design and development to payments and admin panels — while following core architectural principles.",
     className: "md:col-span-2",
     thumbnail: "/freelancer.svg",
   },

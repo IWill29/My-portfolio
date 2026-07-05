@@ -1,11 +1,19 @@
-/* eslint-disable @next/next/no-img-element */
+"use client";
+
 import { useState } from "react";
+import Image from "next/image";
 import { IoCopyOutline } from "react-icons/io5";
-import Lottie from "lottie-react";
 import { cn } from "@/lib/utils";
+import { techStackIcons } from "@/data";
 import GridGlobe from "./GridGlobe";
-import animationData from "@/data/confetti.json";
+import { LazyVideo } from "./LazyVideo";
 import MagicButton from "../MagicButton";
+
+type LottieModule = typeof import("lottie-react");
+
+function normalizeImageSrc(src: string) {
+  return src.startsWith("/") ? src : `/${src}`;
+}
 
 export const BentoGrid = ({
   className,
@@ -34,7 +42,7 @@ export const BentoGridItem = ({
   img,
   imgClassName,
   titleClassName,
-  spareVideo, 
+  spareVideo,
 }: {
   className?: string;
   id: number;
@@ -43,35 +51,30 @@ export const BentoGridItem = ({
   img?: string;
   imgClassName?: string;
   titleClassName?: string;
-  spareVideo?: string; 
+  spareVideo?: string;
 }) => {
-  const leftLists = [
-    "https://cdn.jsdelivr.net/npm/simple-icons@12/icons/react.svg",
-    "https://cdn.jsdelivr.net/npm/simple-icons@12/icons/express.svg",
-    "https://cdn.jsdelivr.net/npm/simple-icons@12/icons/typescript.svg",
-  ];
-
-  const rightLists = [
-    "https://cdn.jsdelivr.net/npm/simple-icons@12/icons/vuedotjs.svg",
-    "https://cdn.jsdelivr.net/npm/simple-icons@12/icons/nuxtdotjs.svg",
-    "https://cdn.jsdelivr.net/npm/simple-icons@12/icons/graphql.svg",
-  ];
+  const stackMidpoint = Math.ceil(techStackIcons.length / 2);
+  const leftLists = techStackIcons.slice(0, stackMidpoint);
+  const rightLists = techStackIcons.slice(stackMidpoint);
 
   const [copied, setCopied] = useState(false);
+  const [confetti, setConfetti] = useState<{
+    Lottie: LottieModule["default"];
+    animationData: object;
+  } | null>(null);
 
-  const defaultOptions = {
-    loop: copied,
-    autoplay: copied,
-    animationData: animationData,
-    rendererSettings: {
-      preserveAspectRatio: "xMidYMid slice",
-    },
-  };
-
-  const handleCopy = () => {
+  const handleCopy = async () => {
     const text = "agnis.kulakovs@gmail.com";
-    navigator.clipboard.writeText(text);
+    await navigator.clipboard.writeText(text);
     setCopied(true);
+
+    if (!confetti) {
+      const [{ default: Lottie }, { default: animationData }] = await Promise.all([
+        import("lottie-react"),
+        import("@/data/confetti.json"),
+      ]);
+      setConfetti({ Lottie, animationData });
+    }
   };
 
   return (
@@ -81,20 +84,22 @@ export const BentoGridItem = ({
         className,
       )}
       style={{
-       
         background: "rgb(4,7,29)",
         backgroundColor:
           "linear-gradient(90deg, rgba(4,7,29,1) 0%, rgba(12,14,35,1) 100%)",
       }}
     >
-      
       <div className={`${id === 6 && "flex justify-center"} h-full`}>
         <div className="w-full h-full absolute">
           {img && (
-            <img
-              src={img}
-              alt={img}
-              className={cn(imgClassName, "object-cover object-center ")}
+            <Image
+              src={normalizeImageSrc(img)}
+              alt=""
+              fill
+              sizes="(max-width: 768px) 100vw, 60vw"
+              priority={id === 1}
+              loading={id === 1 ? undefined : "lazy"}
+              className={cn(imgClassName, "object-cover object-center")}
             />
           )}
         </div>
@@ -104,13 +109,9 @@ export const BentoGridItem = ({
           } `}
         >
           {spareVideo && (
-            <video
+            <LazyVideo
               src={spareVideo}
-              autoPlay
-              muted
-              loop
-              playsInline
-              className="object-cover object-center w-full h-full"
+              className="w-full h-full"
             />
           )}
         </div>
@@ -124,24 +125,18 @@ export const BentoGridItem = ({
             "group-hover/bento:translate-x-2 transition duration-200 relative md:h-full min-h-20 flex flex-col px-5 p-5 lg:",
           )}
         >
-          
           <div className="font-sans font-extralight md:max-w-32 md:text-xs lg:text-base text-sm text-[#C1C2D3] z-10">
             {description}
           </div>
-          
-          <div
-            className={`font-sans text-lg lg:text-3xl max-w-96 font-bold z-10`}
-          >
+
+          <div className="font-sans text-lg lg:text-3xl max-w-96 font-bold z-10">
             {title}
           </div>
 
-          
           {id === 2 && <GridGlobe />}
 
-        
           {id === 3 && (
             <div className="flex gap-1 lg:gap-5 w-fit absolute -right-3 lg:-right-2">
-              
               <div className="flex flex-col gap-3 md:gap-3 lg:gap-8">
                 {leftLists.map((item, i) => (
                   <div
@@ -149,10 +144,13 @@ export const BentoGridItem = ({
                     className="lg:py-4 lg:px-3 py-2 px-3 text-xs lg:text-base opacity-50 
                     lg:opacity-100 rounded-lg text-center bg-[#10132E] w-12 h-12 lg:w-16 lg:h-16 flex items-center justify-center"
                   >
-                    <img 
-                      src={item} 
-                      alt="tech" 
-                      className="w-full h-full object-contain filter brightness-0 invert"
+                    <Image
+                      src={item}
+                      alt="tech"
+                      width={32}
+                      height={32}
+                      loading="lazy"
+                      className="w-full h-full object-contain"
                     />
                   </div>
                 ))}
@@ -166,10 +164,13 @@ export const BentoGridItem = ({
                     className="lg:py-4 lg:px-3 py-2 px-3 text-xs lg:text-base opacity-50 
                     lg:opacity-100 rounded-lg text-center bg-[#10132E] w-12 h-12 lg:w-16 lg:h-16 flex items-center justify-center"
                   >
-                    <img 
-                      src={item} 
-                      alt="tech" 
-                      className="w-full h-full object-contain filter brightness-0 invert"
+                    <Image
+                      src={item}
+                      alt="tech"
+                      width={32}
+                      height={32}
+                      loading="lazy"
+                      className="w-full h-full object-contain"
                     />
                   </div>
                 ))}
@@ -178,18 +179,19 @@ export const BentoGridItem = ({
           )}
           {id === 6 && (
             <div className="mt-5 relative">
-              
-              <div
-                className={`absolute -bottom-5 right-0 ${
-                  copied ? "block" : "block"
-                }`}
-              >
-                
-                <Lottie 
-                  {...defaultOptions}
-                  style={{ height: 200, width: 400 }}
-                />
-              </div>
+              {copied && confetti && (
+                <div className="absolute -bottom-5 right-0">
+                  <confetti.Lottie
+                    loop
+                    autoplay
+                    animationData={confetti.animationData}
+                    rendererSettings={{
+                      preserveAspectRatio: "xMidYMid slice",
+                    }}
+                    style={{ height: 200, width: 400 }}
+                  />
+                </div>
+              )}
 
               <MagicButton
                 title={copied ? "Email is Copied!" : "Copy my email address"}

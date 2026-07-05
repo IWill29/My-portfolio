@@ -1,14 +1,14 @@
-/* eslint-disable @next/next/no-img-element */
 import { FaLocationArrow } from "react-icons/fa6";
+import Image from "next/image";
 
 import { socialMedia } from "@/data";
 import MagicButton from "./MagicButton";
-import { BackgroundBeams } from "./ui/Beams";
+import { DeferredBeams } from "./ui/DeferredBeams";
 
 const Footer = () => {
   return (
     <footer className="relative p-6 h-screen w-screen left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] overflow-hidden" id="contact">
-      <BackgroundBeams className="absolute inset-0 w-full h-full z-0" />
+      <DeferredBeams />
 
       <div className="relative z-10 flex flex-col h-screen justify-between">
         <div className="flex flex-col items-center justify-center flex-1">
@@ -41,7 +41,7 @@ const Footer = () => {
                 rel="noopener noreferrer"
                 className="w-10 h-10 cursor-pointer flex justify-center items-center backdrop-filter backdrop-blur-lg saturate-180 bg-opacity-75 bg-black-200 rounded-lg border border-black-300 hover:border-purple transition"
               >
-                <img src={info.img} alt="icons" width={20} height={20} />
+                <Image src={info.img} alt="social icon" width={20} height={20} />
               </a>
             ))}
           </div>

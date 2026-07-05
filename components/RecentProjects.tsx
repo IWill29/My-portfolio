@@ -1,6 +1,6 @@
-/* eslint-disable @next/next/no-img-element */
 "use client";
 
+import Image from "next/image";
 import { FaLocationArrow } from "react-icons/fa6";
 
 import { projects } from "@/data";
@@ -28,10 +28,13 @@ const RecentProjects = () => {
                   style={{ backgroundColor: "#13162D" }}
                 >
                 </div>
-                <img
+                <Image
                   src={item.img}
-                  alt="cover"
-                  className="z-10 absolute bottom-0"
+                  alt={item.title}
+                  width={400}
+                  height={240}
+                  loading="lazy"
+                  className="z-10 absolute bottom-0 w-full h-auto object-contain"
                 />
               </div>
 
@@ -59,6 +62,7 @@ const RecentProjects = () => {
                         transform: `translateX(-${5 * index + 2}px)`,
                       }}
                     >
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
                       <img src={icon} alt="icon5" className="p-2" />
                     </div>
                   ))}
@@ -66,7 +70,7 @@ const RecentProjects = () => {
 
                 <div className="flex justify-center items-center">
                   <p className="flex lg:text-xl md:text-xs text-sm text-purple">
-                    Check Live Site
+                    Check Live
                   </p>
                   <FaLocationArrow className="ms-3" color="#CBACF9" />
                 </div>

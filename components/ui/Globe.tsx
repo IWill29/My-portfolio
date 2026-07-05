@@ -10,11 +10,22 @@ import { useThree, Canvas, extend } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
 import countries from "@/data/globe.json";
 
-// POTENCIĀLA KĻŪDA: Noslēpt THREE.js BufferGeometry brīdinājumus
+const SUPPRESSED_CONSOLE_ERRORS = [
+  "computeBoundingSphere",
+  "params are being enumerated",
+  "The keys of `searchParams` were accessed directly",
+  "A param property was accessed directly",
+  "A searchParam property was accessed directly",
+  "sync-dynamic-apis",
+];
+
 if (typeof window !== "undefined") {
   const originalError = console.error;
-  console.error = function (...args: any[]) {
-    if (args[0]?.includes?.("computeBoundingSphere")) return;
+  console.error = function (...args: unknown[]) {
+    const message = args.map(String).join(" ");
+    if (SUPPRESSED_CONSOLE_ERRORS.some((entry) => message.includes(entry))) {
+      return;
+    }
     originalError.apply(console, args);
   };
 }
@@ -254,10 +265,10 @@ export function WebGLRendererConfig() {
   const { gl, size } = useThree();
 
   useEffect(() => {
-    gl.setPixelRatio(window.devicePixelRatio);
+    gl.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
     gl.setSize(size.width, size.height);
     gl.setClearColor(0xffaaff, 0);
-  }, []);
+  }, [gl, size.height, size.width]);
 
   return null;
 }
