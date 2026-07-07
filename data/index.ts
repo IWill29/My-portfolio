@@ -87,7 +87,7 @@ export const projects = [
     title: "DriveEast.lv — Magebit Bootcamp Project",
     des: "Full-stack car marketplace built during Magebit IT Bootcamp 2026 — used cars, leasing, buyback, multilingual catalog, and an AI assistant for vehicle inquiries.",
     img: "/project-3.png",
-    iconLists: ["/php.svg", "/laravel.svg", "/filament.svg", "/mariadb.svg", "/tail.svg", "/blade.svg"],
+    iconLists: ["/php.svg", "/laravel.svg", "/filament.svg", "/mariadb.svg", "/tail.svg", "/stripe.svg"],
     link: "https://east-squad.magebit.dev/en",
   },
   {
