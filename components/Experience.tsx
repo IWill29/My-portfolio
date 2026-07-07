@@ -1,6 +1,7 @@
 import Image from "next/image";
 
 import { workExperience } from "@/data";
+import FreelanceLogo from "./FreelanceLogo";
 import { Button } from "./ui/MovingBorders";
 
 const cardStyle = {
@@ -20,14 +21,18 @@ const ExperienceCard = ({ card }: { card: (typeof workExperience)[number] }) => 
   >
     <div className="flex lg:flex-row flex-col lg:items-center justify-center items-center p-3 py-6 md:p-5 lg:p-10 gap-2 text-white min-h-44">
       <div className="relative lg:w-36 md:w-28 w-24 h-16 shrink-0 flex items-center justify-center">
-        <Image
-          src={card.thumbnail}
-          alt={card.title}
-          width={144}
-          height={64}
-          loading="lazy"
-          className="w-full h-full object-contain"
-        />
+        {card.thumbnail === "/freelancer.svg" ? (
+          <FreelanceLogo className="w-full h-full" />
+        ) : (
+          <Image
+            src={card.thumbnail}
+            alt={card.title}
+            width={144}
+            height={64}
+            loading="lazy"
+            className="w-full h-full object-contain"
+          />
+        )}
       </div>
       <div className="lg:ms-5">
         <h1 className="text-start text-xl md:text-2xl font-bold line-clamp-2">

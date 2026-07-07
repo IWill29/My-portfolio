@@ -90,6 +90,14 @@ export const projects = [
     iconLists: ["/php.svg", "/laravel.svg", "/filament.svg", "/mariadb.svg", "/tail.svg", "/blade.svg"],
     link: "https://east-squad.magebit.dev/en",
   },
+  {
+    id: 4,
+    title: "Paradit X — Laravel E-Commerce Store",
+    des: "Shoe e-commerce store built with Laravel 13, Inertia.js, React, and TypeScript — Stripe payments, PostgreSQL, and a polished shopping flow deployed on Vercel.",
+    img: "/project-4.png",
+    iconLists: ["/php.svg", "/laravel.svg", "/react.svg", "/tail.svg", "/stripe.svg", "/postgres.svg"],
+    link: "https://e-comportf-project.vercel.app/",
+  },
 ];
 
 export const techStackIcons = [
