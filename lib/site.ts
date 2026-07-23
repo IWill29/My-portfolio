@@ -21,7 +21,7 @@ export const siteConfig = {
   ],
   links: {
     github: "https://github.com/IWill29",
-    linkedin: "https://www.linkedin.com/in/agnis-kulakovs-951536268",
+    x: "https://x.com/AgnisKulak15614",
   },
   googleSiteVerification:
     process.env.GOOGLE_SITE_VERIFICATION ??

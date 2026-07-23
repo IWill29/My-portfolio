@@ -133,10 +133,12 @@ export const socialMedia = [
     id: 1,
     img: "/git.svg",
     link: "https://github.com/IWill29",
+    name: "GitHub",
   },
   {
     id: 2,
-    img: "/link.svg",
-    link: "www.linkedin.com/in/agnis-kulakovs-951536268",
+    img: "/x.svg",
+    link: "https://x.com/AgnisKulak15614",
+    name: "X",
   },
 ];

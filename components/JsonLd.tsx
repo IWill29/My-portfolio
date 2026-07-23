@@ -13,7 +13,7 @@ const JsonLd = () => {
       addressLocality: "Riga",
       addressCountry: "LV",
     },
-    sameAs: [siteConfig.links.github, siteConfig.links.linkedin],
+    sameAs: [siteConfig.links.github, siteConfig.links.x],
     knowsAbout: [
       "Next.js",
       "Laravel",
