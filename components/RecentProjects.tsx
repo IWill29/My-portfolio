@@ -33,6 +33,8 @@ const RecentProjects = () => {
                   alt={item.title}
                   width={400}
                   height={240}
+                  sizes="(max-width: 640px) 80vw, (max-width: 1024px) 384px, 400px"
+                  quality={80}
                   loading="lazy"
                   className="z-10 absolute bottom-0 w-full h-auto object-contain"
                 />
@@ -62,8 +64,15 @@ const RecentProjects = () => {
                         transform: `translateX(-${5 * index + 2}px)`,
                       }}
                     >
-                      {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img src={icon} alt="icon5" className="p-2" />
+                      <Image
+                        src={icon}
+                        alt=""
+                        width={24}
+                        height={24}
+                        sizes="32px"
+                        loading="lazy"
+                        className="p-2 w-full h-full object-contain"
+                      />
                     </div>
                   ))}
                 </div>

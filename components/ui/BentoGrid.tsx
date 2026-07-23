@@ -96,7 +96,8 @@ export const BentoGridItem = ({
               src={normalizeImageSrc(img)}
               alt=""
               fill
-              sizes="(max-width: 768px) 100vw, 60vw"
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+              quality={id === 1 ? 85 : 75}
               priority={id === 1}
               loading={id === 1 ? undefined : "lazy"}
               className={cn(imgClassName, "object-cover object-center")}
@@ -146,9 +147,10 @@ export const BentoGridItem = ({
                   >
                     <Image
                       src={item}
-                      alt="tech"
+                      alt=""
                       width={32}
                       height={32}
+                      sizes="64px"
                       loading="lazy"
                       className="w-full h-full object-contain"
                     />
@@ -166,9 +168,10 @@ export const BentoGridItem = ({
                   >
                     <Image
                       src={item}
-                      alt="tech"
+                      alt=""
                       width={32}
                       height={32}
+                      sizes="64px"
                       loading="lazy"
                       className="w-full h-full object-contain"
                     />

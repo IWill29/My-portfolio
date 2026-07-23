@@ -1,15 +1,25 @@
+"use client";
+
+import dynamic from "next/dynamic";
 import { FaLocationArrow } from "react-icons/fa6";
 
 import MagicButton from "./MagicButton";
-import { Spotlight } from "./ui/Spotlight";
-import { TextGenerateEffect } from "./ui/TextGenerateEffect";
-import { BackgroundBeams } from "./ui/Beams"; 
+
+const BackgroundBeams = dynamic(
+  () => import("./ui/Beams").then((mod) => mod.BackgroundBeams),
+  { ssr: false },
+);
+
+const Spotlight = dynamic(
+  () => import("./ui/Spotlight").then((mod) => mod.Spotlight),
+  { ssr: false },
+);
 
 const Hero = () => {
-  return ( 
+  return (
     <div className="relative h-screen w-screen left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] overflow-hidden">
       <BackgroundBeams className="absolute inset-0 w-full h-full z-0 bg-black-100" />
-      
+
       <div>
         <Spotlight
           className="-top-40 -left-10 md:-left-32 md:-top-20 h-screen"
@@ -31,10 +41,9 @@ const Hero = () => {
             My Portfolio with Next.js
           </p>
 
-          <TextGenerateEffect
-            words="Full Stack Developer"
-            className="text-center  text-[40px] md:text-5xl lg:text-6xl"
-          />
+          <h1 className="text-center text-[40px] md:text-5xl lg:text-6xl font-bold text-white my-4 leading-snug tracking-wide">
+            Full Stack Developer
+          </h1>
 
           <p className="text-center md:tracking-wider mb-4 text-sm md:text-lg lg:text-2xl">
             Hi! I&apos;m Agnis, a Full-Stack Developer based in Latvia.

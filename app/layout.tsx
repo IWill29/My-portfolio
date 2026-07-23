@@ -6,7 +6,12 @@ import { siteConfig } from "@/lib/site";
 import "./globals.css";
 import { ThemeProvider } from "./provider";
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({
+  subsets: ["latin"],
+  display: "swap",
+  preload: true,
+  adjustFontFallback: true,
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),

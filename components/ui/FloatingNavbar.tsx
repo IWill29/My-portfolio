@@ -1,6 +1,5 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
-import React, { JSX, useState } from "react";
+import { useRef, useState } from "react";
 import {
   motion,
   AnimatePresence,
@@ -17,31 +16,28 @@ export const FloatingNav = ({
   navItems: {
     name: string;
     link: string;
-    icon?: JSX.Element;
+    icon?: React.JSX.Element;
   }[];
   className?: string;
 }) => {
   const { scrollYProgress } = useScroll();
-
-  
+  const lastScroll = useRef(0);
   const [visible, setVisible] = useState(true);
 
   useMotionValueEvent(scrollYProgress, "change", (current) => {
-   
-    if (typeof current === "number") {
-      const direction = current! - scrollYProgress.getPrevious()!;
-
-      if (scrollYProgress.get() < 0.05) {
-        
-        setVisible(true);
-      } else {
-        if (direction < 0) {
-          setVisible(true);
-        } else {
-          setVisible(false);
-        }
-      }
+    if (typeof current !== "number") {
+      return;
     }
+
+    const previous = lastScroll.current;
+    lastScroll.current = current;
+
+    if (current < 0.05) {
+      setVisible(true);
+      return;
+    }
+
+    setVisible(current < previous);
   });
 
   return (
@@ -70,7 +66,7 @@ export const FloatingNav = ({
           border: "1px solid rgba(255, 255, 255, 0.125)",
         }}
       >
-        {navItems.map((navItem: any, idx: number) => (
+        {navItems.map((navItem, idx) => (
           <Link
             key={`link=${idx}`}
             href={navItem.link}
