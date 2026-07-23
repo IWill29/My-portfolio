@@ -1,7 +1,7 @@
 "use client";
 
 import dynamic from "next/dynamic";
-import { FaLocationArrow } from "react-icons/fa6";
+import { FaDownload, FaLocationArrow } from "react-icons/fa6";
 
 import MagicButton from "./MagicButton";
 
@@ -49,13 +49,29 @@ const Hero = () => {
             Hi! I&apos;m Agnis, a Full-Stack Developer based in Latvia.
           </p>
 
-          <a href="#about">
-            <MagicButton
-              title="My Work"
-              icon={<FaLocationArrow />}
-              position="right"
-            />
-          </a>
+          <div className="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-6 w-full">
+            <a href="#about" className="inline-flex shrink-0">
+              <MagicButton
+                title="Watch my work"
+                icon={<FaLocationArrow />}
+                position="right"
+              />
+            </a>
+            <span className="text-center md:tracking-wider text-sm md:text-lg lg:text-2xl md:mt-10 lowercase shrink-0">
+              or
+            </span>
+            <a
+              href="/Agnis_Kulakovs_CV.docx"
+              download="Agnis_Kulakovs_CV.docx"
+              className="inline-flex shrink-0"
+            >
+              <MagicButton
+                title="Download CV"
+                icon={<FaDownload />}
+                position="right"
+              />
+            </a>
+          </div>
         </div>
       </div>
     </div>
