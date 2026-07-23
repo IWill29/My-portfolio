@@ -44,6 +44,13 @@ export const metadata: Metadata = {
     title: siteConfig.title,
     description: siteConfig.description,
   },
+  ...(siteConfig.googleSiteVerification
+    ? {
+        verification: {
+          google: siteConfig.googleSiteVerification,
+        },
+      }
+    : {}),
 };
 
 export default function RootLayout({

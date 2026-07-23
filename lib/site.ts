@@ -23,4 +23,7 @@ export const siteConfig = {
     github: "https://github.com/IWill29",
     linkedin: "https://www.linkedin.com/in/agnis-kulakovs-951536268",
   },
+  googleSiteVerification:
+    process.env.GOOGLE_SITE_VERIFICATION ??
+    "EmvZ-P1ni679R1ywSJc3pBqCq-3kRDCXmyk7a2RicFM",
 } as const;
