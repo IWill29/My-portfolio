@@ -4,9 +4,12 @@ import Image from "next/image";
 import { FaLocationArrow } from "react-icons/fa6";
 
 import { projects } from "@/data";
+import { siteConfig } from "@/lib/site";
 import { PinContainer } from "./ui/Pin";
 
 const RecentProjects = () => {
+  const portfolioHost = new URL(siteConfig.url).hostname;
+
   return (
     <div className="py-20" id="projects">
       <h1 className="heading">
@@ -19,7 +22,7 @@ const RecentProjects = () => {
             key={item.id}
           >
             <PinContainer
-              title={item.link}
+              title={portfolioHost}
               href={item.link}
             >
               <div className="relative flex items-center justify-center sm:w-96 w-[80vw] overflow-hidden h-[20vh] lg:h-[30vh] mb-10">
